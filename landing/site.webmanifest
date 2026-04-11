@@ -1,0 +1,62 @@
+{
+  "name": "Astryxion API - Professional Astrology Solutions",
+  "short_name": "Astryxion",
+  "description": "High-performance API for Western, Vedic, and Chinese astrology calculations",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a1a",
+  "theme_color": "#6366f1",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/assets/favicon-astryxion.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["developer", "astrology", "api"],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot-dashboard.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Developer Dashboard"
+    },
+    {
+      "src": "/assets/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Astryxion on Mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Access the developer dashboard",
+      "url": "/dashboard",
+      "icons": [{ "src": "/assets/favicon-astryxion.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "API Docs",
+      "short_name": "Docs",
+      "description": "View API documentation",
+      "url": "/docs",
+      "icons": [{ "src": "/assets/favicon-astryxion.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "Portal",
+      "short_name": "Portal",
+      "description": "Developer portal login",
+      "url": "/portal",
+      "icons": [{ "src": "/assets/favicon-astryxion.png", "sizes": "512x512" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

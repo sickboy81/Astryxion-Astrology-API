@@ -1,0 +1,27 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+*.tmp
+*.bak
+.openclaude-profile.json
+
+# Editor / local tooling (do not commit)
+.cursor/*
+!.cursor/rules/
+.cursor/rules/*
+!.cursor/rules/github-push.mdc
+mcps/
+.opencode/
+.claude/
+
+# Scratch / merge artifacts
+*.tmp.js
+**/*.temp.txt
+**/*.temp2.txt
+**/iching.ts.final.txt
+tmp_check.txt

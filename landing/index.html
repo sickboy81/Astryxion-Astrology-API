@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Astryxion API - Scalable, high-performance API for Western, Vedic, and Chinese astrology. Perfect for apps, websites, and professional research.">
+    <meta name="keywords" content="Astryxion, Astrology API, Horoscope API, Vedic Astrology API, Natal Chart API, Synastry API, Astrocartography API, Professional Horoscope">
+    <meta name="author" content="Astryxion Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <link rel="canonical" href="https://astryxion.com/">
+    <title>Astryxion API - Western, Vedic & Chinese Astrology Engine</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/assets/favicon-astryxion.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-astryxion.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Preconnect for performance -->
+    <link rel="dns-prefetch" href="//api.astryxion.com">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Astryxion | Professional Astrology Solutions">
+    <meta property="og:description" content="Astryxion: The world's most comprehensive Astrology API. Western, Vedic, Chinese, and advanced celestial calculations.">
+    <meta property="og:url" content="https://astryxion.com/">
+    <meta property="og:image" content="https://astryxion.com/assets/hero-bg.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Astryxion API">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Astryxion | Professional Astrology Solutions">
+    <meta name="twitter:description" content="The world's most comprehensive Astrology API. Western, Vedic, Chinese, and advanced celestial calculations.">
+    <meta name="twitter:image" content="https://astryxion.com/assets/hero-bg.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" as="style">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Astryxion API",
+      "url": "https://astryxion.com",
+      "logo": "https://astryxion.com/assets/logo.png",
+      "description": "Professional astrology API platform providing Western, Vedic, and Chinese astrology calculations.",
+      "sameAs": [
+        "https://github.com/astryxion"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Astryxion API",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      "description": "Powerful API for Western, Vedic, and Chinese astrology calculations including horoscopes, natal charts, and advanced synastry.",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127"
+      }
+    }
+    </script>
+    <!-- Picture element for responsive WebP images with lazy loading -->
+    <style>
+        .hero {
+            background-image: image-set(
+                url('/assets/hero-bg.webp') type('image/webp'),
+                url('/assets/hero-bg.png') type('image/png')
+            );
+            background-size: cover;
+            background-position: center;
+        }
+        @media (max-width: 1200px) {
+            .hero {
+                background-image: image-set(
+                    url('/assets/hero-bg-1200.webp') type('image/webp'),
+                    url('/assets/hero-bg.png') type('image/png')
+                );
+            }
+        }
+        @media (max-width: 768px) {
+            .hero {
+                background-image: image-set(
+                    url('/assets/hero-bg-mobile.webp') type('image/webp'),
+                    url('/assets/hero-bg.png') type('image/png')
+                );
+            }
+        }
+    </style>
+
+    <!-- Smart API URL Detection -->
+    <script>
+        (function() {
+            const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiPort = '3000';
+            window.API_BASE = isLocalDev ? `http://${window.location.hostname}:${apiPort}` : '';
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.api-link').forEach(link => {
+                    const relativePath = link.getAttribute('data-href') || link.getAttribute('href');
+                    if (isLocalDev && relativePath.startsWith('/')) {
+                        link.href = window.API_BASE + relativePath;
+                    }
+                });
+            });
+        })();
+    </script>
+</head>
+<body class="reveal-auto">
+    <!-- Beta Announcement Banner -->
+    <div id="astryxion-beta-banner" class="beta-banner">
+        <span>✨ <b>ASTRYXION OPEN BETA:</b> Register now & get <b>Mercury Tier</b> for free!</span>
+        <a href="/portal">Claim Access &rarr;</a>
+    </div>
+
+    <script>
+        // Dynamic Beta Detection
+        async function checkBetaBanner() {
+            try {
+                // Use absolute URL if in local dev
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const endpoint = isLocal ? 'http://' + window.location.hostname + ':3000/api/v1/system/config' : '/api/v1/system/config';
+                
+                const res = await fetch(endpoint);
+                const data = await res.json();
+                if (data.betaMode) {
+                    document.getElementById('astryxion-beta-banner').style.display = 'flex';
+                    document.body.classList.add('has-beta-banner');
+                }
+            } catch (e) { console.warn("Beta status unavailable", e); }
+        }
+        checkBetaBanner();
+    </script>
+    <header class="main-header">
+        <nav class="container">
+            <a href="/" class="logo">ASTRYXION API</a>
+                <ul class="nav-links">
+                    <li><a href="/features">Full Catalog</a></li>
+                    <li><a href="/status" class="api-link">Status</a></li>
+                    <li><a href="/docs" class="api-link" target="_blank" rel="noopener">Docs</a></li>
+                    <li><a href="/dashboard" class="api-link" target="_blank" rel="noopener">Playground</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="/portal" class="btn btn-secondary api-link">Login / Portal 🔑</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 class="reveal-up">Build Smarter Astrology <span>Products, Faster.</span></h1>
+                <p class="reveal-up">The world's most comprehensive ASTROLOGY API. Western, Vedic, and Esoteric engines with professional PDF reports, <strong>embeddable natal SVG</strong> (themes + optional wheel/grid split), and <strong>LLM-ready natal XML</strong> over HTTP—plus MCP for agents.</p>
+                    <div class="cta-group reveal-up">
+                        <a href="/portal" class="btn btn-primary api-link">Access Developer Portal</a>
+                        <a href="/dashboard" class="btn btn-outline api-link" target="_blank" rel="noopener">Explore Playground</a>
+                    </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section pillars-showcase">
+            <div class="pillars-bg" aria-hidden="true"></div>
+            <div class="container pillars-inner">
+                <header class="pillars-header">
+                    <div class="section-badge">Core Pillars</div>
+                    <h2 class="reveal-up pillars-title">Professional <span class="pillars-title-accent">Celestial Intelligence</span></h2>
+                    <p class="section-desc reveal-up">Six production-grade engines—western charts, vedic depth, esoteric tools, Chinese systems, AI-native access, and global geo data—in one unified API surface.</p>
+                </header>
+                
+                <!-- The Big 6 Highlights -->
+                <div class="features-grid highlights-6 pillars-grid">
+                    <a href="/features#western" class="feature-card-link pillar-link">
+                        <div class="feature-card pillar-card pillar-card--western reveal-up">
+                            <span class="pillar-eyebrow">Western · Tropical &amp; sidereal</span>
+                            <div class="pillar-icon-ring">
+                                <div class="icon-wrap"><span class="pillar-icon-emoji" aria-hidden="true">🌍</span></div>
+                            </div>
+                            <h3>WesternPro</h3>
+                            <p>High-precision natal, synastry, and predictive engines—JSON, SVG wheels, and LLM context from one stack.</p>
+                            <span class="pillar-cta">Explore module <span class="pillar-cta-arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a href="/features#vedic" class="feature-card-link pillar-link">
+                        <div class="feature-card pillar-card pillar-card--vedic reveal-up">
+                            <span class="pillar-eyebrow">Jyotish · Classical</span>
+                            <div class="pillar-icon-ring">
+                                <div class="icon-wrap"><span class="pillar-icon-emoji" aria-hidden="true">🪷</span></div>
+                            </div>
+                            <h3>VedicExpert</h3>
+                            <p>Complete Jyotish: Kundli, Marriage Matching, Dashas, and Ashtakavarga.</p>
+                            <span class="pillar-cta">Explore module <span class="pillar-cta-arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a href="/features#esoteric" class="feature-card-link pillar-link">
+                        <div class="feature-card pillar-card pillar-card--esoteric reveal-up">
+                            <span class="pillar-eyebrow">Tarot · Runes · I Ching</span>
+                            <div class="pillar-icon-ring">
+                                <div class="icon-wrap"><span class="pillar-icon-emoji" aria-hidden="true">🔮</span></div>
+                            </div>
+                            <h3>EsotericElite</h3>
+                            <p>Exclusive Tarot, Runes, and I Ching engines with deep symbolic mapping.</p>
+                            <span class="pillar-cta">Explore module <span class="pillar-cta-arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a href="/features#chinese" class="feature-card-link pillar-link">
+                        <div class="feature-card pillar-card pillar-card--chinese reveal-up">
+                            <span class="pillar-eyebrow">Ba Zi · Feng Shui · Zodiac</span>
+                            <div class="pillar-icon-ring">
+                                <div class="icon-wrap"><span class="pillar-icon-emoji" aria-hidden="true">🐉</span></div>
+                            </div>
+                            <h3>ChineseWisdom</h3>
+                            <p>12 Animals, Ba Zi, Feng Shui Flying Stars, and Kua calculation engine.</p>
+                            <span class="pillar-cta">Explore module <span class="pillar-cta-arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a href="/features#infra" class="feature-card-link pillar-link">
+                        <div class="feature-card pillar-card pillar-card--agent reveal-up">
+                            <span class="pillar-eyebrow">MCP · OpenAPI · Agents</span>
+                            <div class="pillar-icon-ring">
+                                <div class="icon-wrap"><span class="pillar-icon-emoji" aria-hidden="true">🤖</span></div>
+                            </div>
+                            <h3>Universal Agent Native</h3>
+                            <p>MCP discovery, OpenAPI, and <code style="font-size:0.85em">natal/llm-context</code> for one-shot natal XML in prompts—no agent runtime required.</p>
+                            <span class="pillar-cta">Explore module <span class="pillar-cta-arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                    <a href="/features#infra" class="feature-card-link pillar-link">
+                        <div class="feature-card pillar-card pillar-card--geo reveal-up">
+                            <span class="pillar-eyebrow">Geo · 138k+ cities offline</span>
+                            <div class="pillar-icon-ring">
+                                <div class="icon-wrap"><span class="pillar-icon-emoji" aria-hidden="true">📍</span></div>
+                            </div>
+                            <h3>GeoLocal</h3>
+                            <p>Offline database of 138,000+ cities with embedded lat/lon and DST history.</p>
+                            <span class="pillar-cta">Explore module <span class="pillar-cta-arrow" aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Master Catalog Tabs -->
+                <div class="master-catalog reveal-up">
+                    <div class="section-header text-center">
+                        <div class="section-badge">Deep Dive</div>
+                        <h3>Explore the Expert Catalog</h3>
+                    </div>
+                    
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="vedic">Vedic Expert</button>
+                        <button class="tab-btn" data-tab="schools">Wisdom Schools</button>
+                        <button class="tab-btn" data-tab="specialized">Muhurta & Prasna</button>
+                        <button class="tab-btn" data-tab="tech">Technical Spec</button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <!-- Vedic Expert -->
+                        <div class="tab-panel active" id="vedic">
+                            <div class="panel-grid">
+                                <div class="panel-column">
+                                    <h4>Calculations</h4>
+                                    <ul>
+                                        <li><strong>Shadbala Analysis</strong>: Sthana, Dig, Kala, Chesta, Naisargika, Drik.</li>
+                                        <li><strong>Ashtakavarga Matrix</strong>: Comprehensive Bindu scoring per planet.</li>
+                                        <li><strong>Marriage Matching</strong>: Ashtakoot (36 points) & Porutham (10 points).</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-column">
+                                    <h4>Yogas & Dashas</h4>
+                                    <ul>
+                                        <li><strong>Yoga Finder</strong>: 100+ planetary combinations detected.</li>
+                                        <li><strong>Vimshottari Dasha</strong>: Complete Mahadasha cycle timings.</li>
+                                        <li><strong>Dosha Diagnosis</strong>: Mangal Dosha, Sade-Sati, and Kaalsarp check.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-column">
+                                    <h4>Muhurta & Panchang</h4>
+                                    <ul>
+                                        <li><strong>Detailed Panchang</strong>: Rahu Kaal, Yama Gandam, and Gulika periods.</li>
+                                        <li><strong>Auspicious Timings</strong>: Based on Tithi, Yoga, and Nakshatra.</li>
+                                        <li><strong>Dina Porutham</strong>: Vedic health and longevity matching.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wisdom Schools -->
+                        <div class="tab-panel" id="schools">
+                            <div class="panel-grid">
+                                <div class="panel-column">
+                                    <h4>Jaimini System</h4>
+                                    <ul>
+                                        <li><strong>Jaimini Karakas</strong>: Identification of Atmakaraka and others.</li>
+                                        <li><strong>Chara Dasha</strong>: Sign-based predictive periods.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-column">
+                                    <h4>Lal Kitab & Nadi</h4>
+                                    <ul>
+                                        <li><strong>Lal Kitab Analysis</strong>: Unique remedies and interpretations.</li>
+                                        <li><strong>Nadi Astrology</strong>: Karmic lessons and spiritual path finding.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-column">
+                                    <h4>Tajika & Chinese</h4>
+                                    <ul>
+                                        <li><strong>Tajika Chart</strong>: Vedic Annual Return (Solar Revolutions).</li>
+                                        <li><strong>Chinese Zodiac</strong>: Ba Zi Luck Pillars and Animal Signs.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Specialized -->
+                        <div class="tab-panel" id="specialized">
+                            <div class="panel-grid">
+                                <div class="panel-column">
+                                    <h4>Electional (Muhurta)</h4>
+                                    <ul>
+                                        <li><strong>Muhurta Evaluation</strong>: Find the best time to start any action.</li>
+                                        <li><strong>Panchanga</strong>: Daily Vara, Tithi, Yoga (27 classical limbs), Karana, Nakshatra — tables and deity labels in EN/PT/ES/HI; nakshatra catalog via <code>GET /api/v1/nakshatras?lang=…</code>.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-column">
+                                    <h4>Relational (Matching)</h4>
+                                    <ul>
+                                        <li><strong>Gunamilap Matching</strong>: 8-fold (Ashta-kuta) compatibility.</li>
+                                        <li><strong>Synastry & Composite</strong>: Advanced relationship engines.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-column">
+                                    <h4>Events (Eclipses)</h4>
+                                    <ul>
+                                        <li><strong>Eclipse Saros</strong>: Comprehensive lunar/solar eclipse search.</li>
+                                        <li><strong>Prasna Astrology</strong>: Real-time horary question answering.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Code and SDK Section -->
+                </div>
+            </div>
+        </section>
+
+        <!-- API Access Section (New Onboarding Flow) -->
+        <section id="api-access" class="api-access-section reveal-up">
+            <div class="container container-narrow">
+                <div class="access-card">
+                    <div class="section-badge">Fast Track</div>
+                    <h2>Experience the Cosmos in Seconds</h2>
+                    <p>Stop reading, start building. Create your free account in the Developer Portal to generate keys and manage your APIs.</p>
+                    
+                    <div class="key-gen-card">
+                        <a href="/portal" class="btn btn-primary btn-lg api-link">Go to Developer Portal</a>
+                    </div>
+
+                    <div class="access-guides">
+                        <div class="guide-item">
+                            <h5>Public Sandbox</h5>
+                            <p>Use <code>dev_test_key</code> for immediate read-only tests.</p>
+                        </div>
+                        <div class="guide-item">
+                            <h5>Enterprise Tier</h5>
+                            <p>Need high volume? <a href="#pricing">See professional plans</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="container text-center">
+                <div class="section-badge">Plans</div>
+                <h2 class="reveal-up">Scalable Tiers for Every Need</h2>
+                <div id="landing-pricing-grid" class="pricing-grid" aria-live="polite">
+                    <p class="pricing-loading text-center" style="grid-column: 1/-1; color: var(--text-muted);">Loading plans…</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <a href="/" class="logo">ASTRYXION API</a>
+            <div class="footer-links">
+                <a href="/features">Features</a>
+                <a href="/docs" class="api-link" target="_blank" rel="noopener">Docs</a>
+                <a href="/dashboard" class="api-link" target="_blank" rel="noopener">Playground</a>
+                <a href="/status" class="api-link" target="_blank" rel="noopener">Status</a>
+                <a href="/terms.html">Terms</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="mailto:support@astryxion.com">Support</a>
+            </div>
+            <div class="copyright">&copy; 2026 ASTRYXION API. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="scripts.js" defer></script>
+</body>
+</html>

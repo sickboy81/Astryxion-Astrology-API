@@ -1,0 +1,19 @@
+---
+description: Fluxo obrigatório para enviar este repositório ao GitHub
+alwaysApply: true
+---
+
+# Push para GitHub (Astryxion / API Astro)
+
+Neste projeto **não** uses `git push` direto para publicar no remoto.
+
+Usa sempre:
+
+```bash
+npm run push-github
+```
+
+Isto colapsa o histórico do branch atual num **único commit** (mensagem `.`) e faz **push forçado**, como combinado com o utilizador.
+
+- Mensagem de commit alternativa: `GIT_COMMIT_MSG="x" npm run push-github`
+- Remoto alternativo: `GIT_REMOTE=upstream npm run push-github`

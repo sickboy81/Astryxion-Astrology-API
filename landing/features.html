@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete catalog of Astryxion API features. Western, Vedic, Chinese astrology engines with 100+ endpoints. Explore our professional celestial calculation capabilities.">
+    <meta name="keywords" content="Astrology API Features, Vedic API, Western Astrology Endpoints, Chinese Zodiac API, Horoscope Engine, Natal Chart API">
+    <meta name="author" content="Astryxion Team">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#8a4fff">
+    <link rel="canonical" href="https://astryxion.com/features">
+    <title>Features Catalog | Astryxion API - Western, Vedic & Chinese Engines</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/assets/favicon-astryxion.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-astryxion.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Features Catalog | Astryxion API">
+    <meta property="og:description" content="Explore 100+ astrology API endpoints. Western, Vedic, Chinese engines with complete technical documentation.">
+    <meta property="og:url" content="https://astryxion.com/features">
+    <meta property="og:image" content="https://astryxion.com/assets/hero-bg.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Astryxion API">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Features Catalog | Astryxion API">
+    <meta name="twitter:description" content="Explore 100+ astrology API endpoints. Western, Vedic, Chinese engines.">
+    <meta name="twitter:image" content="https://astryxion.com/assets/hero-bg.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css">
+    
+    <!-- Smart API URL Detection -->
+    <script>
+        (function() {
+            const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const apiPort = '3000';
+            window.API_BASE = isLocalDev ? `http://${window.location.hostname}:${apiPort}` : '';
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.api-link').forEach(link => {
+                    const relativePath = link.getAttribute('data-href') || link.getAttribute('href');
+                    if (isLocalDev && relativePath.startsWith('/')) {
+                        link.href = window.API_BASE + relativePath;
+                    }
+                });
+            });
+        })();
+    </script>
+</head>
+<body class="features-page">
+    <!-- Beta Announcement Banner -->
+    <div id="astryxion-beta-banner" class="beta-banner">
+        <span>✨ <b>ASTRYXION OPEN BETA:</b> Register now & get <b>Mercury Tier</b> for free!</span>
+        <a href="/portal">Claim Access &rarr;</a>
+    </div>
+
+    <script>
+        // Dynamic Beta Detection
+        async function checkBetaBanner() {
+            try {
+                // Use absolute URL if in local dev
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const endpoint = isLocal ? 'http://' + window.location.hostname + ':3000/api/v1/system/config' : '/api/v1/system/config';
+                
+                const res = await fetch(endpoint);
+                const data = await res.json();
+                if (data.betaMode) {
+                    document.getElementById('astryxion-beta-banner').style.display = 'flex';
+                    document.body.classList.add('has-beta-banner');
+                }
+            } catch (e) { console.warn("Beta status unavailable", e); }
+        }
+        checkBetaBanner();
+    </script>
+    <header class="main-header">
+        <nav class="container">
+            <a href="/" class="logo">ASTRYXION API</a>
+                <ul class="nav-links">
+                    <li><a href="/features" class="active">Full Catalog</a></li>
+                    <li><a href="/status" class="api-link">Status</a></li>
+                    <li><a href="/docs" class="api-link" target="_blank" rel="noopener">Docs</a></li>
+                    <li><a href="/dashboard" class="api-link" target="_blank" rel="noopener">Playground</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
+                    <li><a href="/portal" class="btn btn-secondary api-link">Login / Portal 🔑</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <main class="features-main-content">
+        <!-- Hero Section -->
+        <section class="features-hero container text-center">
+            <div class="section-badge">Technical Registry</div>
+            <h1>The Complete <span>Celestial</span> Datasheet</h1>
+                        <p class="section-desc">Exhaustive listing of all engines, calculation points, and esoteric datasets available via our high-performance endpoints. Now featuring a global database of 138,000+ cities with native timezone resolution.</p>
+            
+            <div class="feature-nav-shortcuts">
+                <a href="#western">WesternPro</a>
+                <a href="#vedic">VedicExpert</a>
+                <a href="#chinese">Chinese</a>
+                <a href="#esoteric">Esoteric</a>
+                <a href="#content">Content APIs</a>
+                <a href="#reports">Reports</a>
+                <a href="#infra">Infra</a>
+                <a href="#dev">Developer XP</a>
+            </div>
+        </section>
+
+        <!-- Catalog Grid -->
+        <section class="container features-catalog-grid">
+            
+            <!-- WesternPro Elite -->
+            <div id="western" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">🌍</div>
+                    <h2>WesternPro Elite Engine</h2>
+                    <span class="badge-tech">High-Precision Swiss Ephemeris</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Core & Natal Calculation</h4>
+                        <ul>
+                            <li><strong>Planet Positions</strong>: Longitude, latitude, speed, and related data for major bodies including Chiron, Lilith, and lunar nodes (see <code class="text-primary">/api/v1/natal-chart</code> response).</li>
+                            <li><strong>Natal wheel SVG</strong>: <code class="text-primary">POST /api/v1/chart/natal-svg</code> (JSON <code>chart</code> or <code>splitChart</code> → <code>chartWheel</code> + <code>chartGrid</code>; themes <code>lavender</code>/<code>dark</code>/<code>minimal</code>; raw SVG via <code>format: "svg"</code>). <code class="text-primary">POST /api/v1/chart/synastry-svg</code> — two wheels. <code class="text-primary">POST /api/v1/natal/llm-context</code> — XML for LLM prompts.</li>
+                            <li><strong>Angles &amp; Houses</strong>: Ascendant, MC, and full house cusps from Swiss Ephemeris.</li>
+                            <li><strong>House Systems (Swiss Ephemeris)</strong>: <strong>Placidus</strong>, <strong>Koch</strong>, <strong>Equal</strong>, <strong>Whole Sign</strong>, <strong>Regiomontanus</strong>, <strong>Campanus</strong>, <strong>Porphyry</strong>, and <strong>Alcabitius</strong>—shared Zod schema across natal, advanced, and Vedic house routes.</li>
+                            <li><strong>Aspects</strong>: Major/minor including <strong>quintile</strong> (72°), <strong>biquintile</strong> (144°), and <strong>septile</strong> (~51.43°), plus conjunction through sesquiquadrate (per-type orbs).</li>
+                            <li><strong>Aspect Patterns</strong>: <strong>Grand Trine</strong>, <strong>T-Square</strong>, <strong>Yod</strong>, <strong>Grand Cross</strong>, <strong>Mystic Rectangle</strong>, and <strong>Stellium</strong> (with i18n <code>patternKey</code> for client labels in EN/PT/ES/HI).</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Advanced Predictive Tech</h4>
+                        <ul>
+                            <li><strong>Solar Return</strong>: <code class="text-primary">POST /api/v1/solar-return</code> — return chart for a target year.</li>
+                            <li><strong>Secondary Progressions</strong>: <code class="text-primary">POST /api/v1/progressions</code> — day-for-a-year model with progressed positions.</li>
+                            <li><strong>Transits</strong>: <code class="text-primary">POST /api/v1/transits</code> — natal vs transit sky for a chosen moment.</li>
+                            <li><strong>Annual Forecast (JSON)</strong>: <code class="text-primary">POST /api/v1/annual-predictions</code> — optional <code>lang</code> (<code>en</code>/<code>pt</code>/<code>es</code>/<code>hi</code>) for localized copy; month-by-month themes (rich PT sign-specific text; other langs use structured generic themes).</li>
+                            <li><strong>Solar Arc</strong>: <code class="text-primary">POST /api/v1/solar-arc</code> — <em>true solar arc</em> (tropical Sun displacement birth→directed instant); directed longitudes + houses recomputed for the directed UT moment.</li>
+                            <li><strong>Rectification Assist</strong>: <code class="text-primary">POST /api/v1/rectification</code> — scoring assist using life-event timestamps.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Relocational & Fixed Data</h4>
+                        <ul>
+                            <li><strong>Astrocartography</strong>: <code class="text-primary">POST /api/v1/astrocartography</code> — planetary line mapping for relocation work.</li>
+                            <li><strong>Composite</strong>: <code class="text-primary">POST /api/v1/composite</code> — midpoint relationship chart.</li>
+                            <li><strong>Synastry</strong>: <code class="text-primary">POST /api/v1/synastry</code> — two charts compared.</li>
+                            <li><strong>Eclipses</strong>: <code class="text-primary">POST /api/v1/eclipses</code> — eclipse set for a calendar year.</li>
+                            <li><strong>Fixed Stars &amp; Arabic Parts</strong>: Returned in rich natal payloads—conjunctions to catalogued stars and calculated Arabic parts (e.g. Lot of Fortune).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VedicExpert Supreme -->
+            <div id="vedic" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">🪷</div>
+                    <h2>VedicExpert Supreme (Jyotish)</h2>
+                    <span class="badge-tech">Jyotish engines (see coordinate model in repo docs)</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Lunar & Period Systems</h4>
+                        <ul>
+                            <li><strong>27 Nakshatras — full catalog i18n</strong>: <code class="text-primary">GET /api/v1/nakshatras</code> with <code>lang</code> (<code>en</code>/<code>pt</code>/<code>es</code>/<code>hi</code>) and optional <code>name</code> filter returns <strong>localized</strong> <code>lord</code>, <code>deity</code>, <code>description</code>, <code>symbol</code>, <code>nature</code>, <code>guna</code>, <code>element</code>, <code>animal</code>, <code>tree</code>, <code>direction</code>, <code>caste</code>, <code>gender</code>, <code>dosha</code>, <code>favorableActivities</code>, <code>unfavorableActivities</code>, and <code>compatibility</code> (partner labels in the requested language). <code>name</code> / <code>sanskritName</code> remain stable API keys. <code class="text-primary">POST /api/v1/nakshatra</code> mirrors the same fields for any longitude (plus <code>pada</code> and span).</li>
+                            <li><strong>Panchang (5 limbs)</strong>: Tithi, Vara, Nakshatra, Yoga, Karana — <strong>Yoga</strong> uses the <strong>classical 27</strong> divisions of the Sun–Moon sum (13°20′ each), including <strong>Vajra</strong> and <strong>Siddhi</strong> in canonical order through <strong>Vaidhriti</strong>. Tithi, weekday, and karana include <strong>localized presiding-deity labels</strong>; tithi/yoga/karana tables carry EN/PT/ES/HI copy for nature and elective hints.</li>
+                            <li><strong>Vimshottari Dasha</strong>: Complete planetary period cycles (120 years) from Mahadasha to Antardasha and Pratyantardasha precision.</li>
+                            <li><strong>Chara Dasha (Jaimini)</strong>: Sign-based periods for timing major events.</li>
+                            <li><strong>Jaimini Karakas</strong>: 7/8 Karaka systems (Atmakaraka, Amatyakaraka, Bhratrukaraka, etc.).</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Strengths & Vargas</h4>
+                        <ul>
+                            <li><strong>20 Divisional Charts (Vargas)</strong>: D1 (Rasi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsa), D7 (Saptamsa), D9 (Navamsa), D10 (Dasamsa), D12, D16, D20, D24, D27, D30, D40, D45, D60 (Shashtiamsa).</li>
+                            <li><strong>Shadbala System</strong>: Sixfold planetary strength calculation (Sthana, Dig, Kala, Chesta, Naisargika, Drik).</li>
+                            <li><strong>Ashtakavarga System</strong>: Detailed Bindu (point) matrix for houses and planets.</li>
+                            <li><strong>Planetary Yogas & Doshas</strong>: Detection of Raja Yogas, Mangal Dosha, Sade Sati phases, and Kaala Sarpa.</li>
+                            <li><strong>Marital Matching Engine</strong>: Advanced Ashtakoot (8-point North Indian) and Dasakoota/Porutham (10-point South Indian) compatibility calculations based on precise lunar longitudes.</li>
+                            <li><strong>Graha Yuddha & Avasthas</strong>: Deep state calculation defining planetary war scenarios and awake/asleep states.</li>
+                            <li><strong>Argala & Drishti</strong>: Deep Vedic aspect mapping and planetary intervention blocking (Argala).</li>
+                            <li><strong>Vargottama shortcut</strong>: <code class="text-primary">POST /api/v1/vedic/vargottama</code> and <code class="text-primary">vedicChart.vargottama</code> on <code class="text-primary">POST /api/v1/vedic-complete</code>—D1 vs D9 sign parity using the same divisional model as <code class="text-primary">varga-analysis</code> (see API <code>methodology</code> field).</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Counsel & Remedies</h4>
+                        <ul>
+                            <li><strong>Remedial Measures</strong>: Systematic Gemstone prescriptions, Mantra repetitions, Yantra installation, specific Fasting rules, and ritual donations.</li>
+                            <li><strong>Lal Kitab Engine</strong>: Simplified remedies based on planetary house placements.</li>
+                            <li><strong>Nadi Astrology</strong>: Past life karma analysis and spiritual path guidance.</li>
+                            <li><strong>Tajika (Solar Return)</strong>: Muntha and Varsheshwar calculations for Vedic yearly forecasting.</li>
+                            <li><strong>Muhurta (Elective)</strong>: Identification of auspicious windows for Business, Marriage, Travel, and Construction.</li>
+                            <li><strong>Prasna (Horary)</strong>: Actionable answers to specific questions based on the exact time of inquiry.</li>
+                            <li><strong>Tara Bala & Gochara</strong>: Deep transit analysis against the natal Moon and Nakshatra compatibility.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chinese Wisdom Engine -->
+            <div id="chinese" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">🐉</div>
+                    <h2>Chinese Wisdom Engine</h2>
+                    <span class="badge-tech">Luni-solar &amp; symbolic engines</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Zodiac &amp; Destiny</h4>
+                        <ul>
+                            <li><strong>12 Animals &amp; Elements</strong>: <code class="text-primary">GET /api/v1/chinese/animals</code>, <code class="text-primary">POST /api/v1/chinese/zodiac</code> (year animal + element + profile).</li>
+                            <li><strong>Compatibility</strong>: <code class="text-primary">POST /api/v1/chinese/compatibility</code> — optional detailed narrative.</li>
+                            <li><strong>Horoscope Texts</strong>: <code class="text-primary">POST /api/v1/chinese/horoscope</code> — daily / weekly / monthly / yearly by category.</li>
+                            <li><strong>Yin–Yang</strong>: <code class="text-primary">POST /api/v1/chinese/yin-yang</code> — balance analysis from birth date.</li>
+                            <li><strong>Ba Zi (four pillars)</strong>: <code class="text-primary">POST /api/v1/chinese/bazi</code> — year/month/day/hour pillars using <strong>Li Chun</strong> and solar-term month segments (Swiss Ephemeris Sun longitude); <code>timezoneOffsetMinutes</code> shifts civil local time for the hour pillar. Pillar names returned as Han characters plus localized labels (EN/PT/ES/HI).</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>I Ching (Book of Changes)</h4>
+                        <ul>
+                            <li><strong>Daily hexagram</strong>: <code class="text-primary">GET /api/v1/chinese/iching</code> — localized judgment and advice.</li>
+                            <li><strong>Coin consultation</strong>: <code class="text-primary">POST /api/v1/iching/consult</code> — changing lines and full reading (also listed under Esoteric).</li>
+                            <li><strong>64 hexagrams</strong>: Complete symbolic library in the engine backing both routes.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Environment &amp; space</h4>
+                        <ul>
+                            <li><strong>Kua number</strong>: <code class="text-primary">POST /api/v1/chinese/kua</code> — auspicious directions from birth year and gender.</li>
+                            <li><strong>Chinese numerology</strong>: <code class="text-primary">POST /api/v1/chinese/numerology</code> — birth-date number mapping with localized meanings.</li>
+                            <li><strong>Flying Stars (annual profile)</strong>: <code class="text-primary">GET /api/v1/chinese/feng-shui</code> and <code class="text-primary">POST /api/v1/chinese/feng-shui</code> — dominant star, directions, colors, tips (localized). Optional <code>grid=true</code> / <code>includeGrid</code> adds a <strong>9-palace annual</strong> numeric grid (順飞 from the center star); monthly sector overlay is documented as approximate—see API description.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Esoteric Elite Suite -->
+            <div id="esoteric" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">🔮</div>
+                    <h2>Esoteric Elite Suite</h2>
+                    <span class="badge-tech">Oracular Data Models</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Tarot &amp; Runes</h4>
+                        <ul>
+                            <li><strong>Tarot (78 cards)</strong>: Major &amp; Minor Arcana with spreads (single, three-card, Celtic Cross, etc.): <code class="text-primary">POST /api/v1/tarot/draw</code></li>
+                            <li><strong>Elder Futhark (24 runes)</strong>: Single or three-rune casts: <code class="text-primary">POST /api/v1/runes/draw</code></li>
+                            <li><strong>I Ching (coins)</strong>: <code class="text-primary">POST /api/v1/iching/consult</code> — also referenced under Chinese alongside the daily hexagram route.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Numerology &amp; Palmistry</h4>
+                        <ul>
+                            <li><strong>Palmistry</strong>: <code class="text-primary">POST /api/v1/palmistry/interpret</code></li>
+                            <li><strong>Numerology (core)</strong>: <code class="text-primary">POST /api/v1/numerology</code></li>
+                            <li><strong>Numerology (full)</strong>: <code class="text-primary">POST /api/v1/numerology/complete</code> — Pythagorean, Chaldean, Vedic, Lo Shu grid, compatibility.</li>
+                            <li><strong>Cabalistic</strong>: <code class="text-primary">POST /api/v1/numerology/cabalistic</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AstroText Content APIs -->
+            <div id="content" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">📰</div>
+                    <h2>AstroText Commercial Suite</h2>
+                    <span class="badge-tech">AI Localization (4 Langs)</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Western Zodiac Content</h4>
+                        <ul>
+                            <li><strong>Daily Horoscopes</strong>: Real-time, localized daily advice for all 12 sun signs based on planetary transits.</li>
+                            <li><strong>Weekly & Monthly Forecasts</strong>: Extended trend analysis covering love, career, and spiritual growth.</li>
+                            <li><strong>Dynamic AI Generation</strong>: Context-aware text generation guaranteeing unique daily insights.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Vedic Nakshatra Content</h4>
+                        <ul>
+                            <li><strong>Nakshatra Daily Guidance</strong>: Unique forecasts based on the 27 Nakshatras and current lunar transits.</li>
+                            <li><strong>Long-Term Cycles</strong>: Weekly and monthly predictions integrating Vedic periods and themes.</li>
+                            <li><strong>Deity-Aligned Advice</strong>: Professional, culturally resonant localization tailored to each Nakshatra's presiding deity.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Delivery & Localization</h4>
+                        <ul>
+                            <li><strong>Multi-Language Native</strong>: Fully polished output in English (EN), Portuguese (PT), Spanish (ES), and Hindi (HI).</li>
+                            <li><strong>Content API</strong>: Plug-and-play endpoints <code>/api/v1/horoscope/:sign</code> and <code>/api/v1/vedic-horoscope/:nakshatra</code>.</li>
+                            <li><strong>Edge Caching</strong>: Millisecond delivery for requested texts via Redis clustering.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Celestial Professional Reports -->
+            <div id="reports" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">📄</div>
+                    <h2>Celestial Professional Reports</h2>
+                    <span class="badge-tech">High-Fidelity PDF Monograph Engine</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>PDF reports (Puppeteer)</h4>
+                        <ul>
+                            <li><strong>Natal monograph</strong>: <code class="text-primary">POST /api/v1/reports/natal-pdf</code> — long-form birth analysis.</li>
+                            <li><strong>Daily cosmic snapshot</strong>: <code class="text-primary">POST /api/v1/reports/mini-horoscope</code> — short PDF for the day.</li>
+                            <li><strong>Relationship resonance</strong>: <code class="text-primary">POST /api/v1/reports/matchmaking</code> — two-person compatibility PDF.</li>
+                            <li><strong>Annual forecast PDF</strong>: <code class="text-primary">POST /api/v1/reports/annual-forecast-pdf</code> — same symbolic engine family as <code class="text-primary">POST /api/v1/annual-predictions</code>, with <code>lang</code> and 24h Redis cache.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Compatibility (JSON APIs)</h4>
+                        <ul>
+                            <li><strong>Western synastry</strong>: <code class="text-primary">POST /api/v1/synastry</code> and <code class="text-primary">POST /api/v1/compatibility</code> (Vedic-oriented compatibility on the Vedic routes).</li>
+                            <li><strong>Composite chart</strong>: <code class="text-primary">POST /api/v1/composite</code> — midpoint relationship chart (JSON), separate from the matchmaking PDF above.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Universal Standards</h4>
+                        <ul>
+                            <li><strong>Global Native Localization</strong>: Native support for English (EN), Portuguese (PT), Spanish (ES), and Hindi (HI) with industry-standard terminology.</li>
+                            <li><strong>Premium White-Label Ready</strong>: Professional, clean aesthetic optimized for direct delivery to clients or integration into your own app.</li>
+                            <li><strong>Celestial Network Perk</strong>: Full access included for Mercury, Venus, and Saturn network participants.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Sovereignty -->
+            <div id="infra" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">🤖</div>
+                    <h2>Technical Sovereignty</h2>
+                    <span class="badge-tech">Enterprise Infrastructure</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Connectivity & AI</h4>
+                        <ul>
+                            <li><strong>Universal Agent Native</strong>: Optimized celestial context for ChatGPT (via Actions), Claude, Perplexity, and Llama agents.</li>
+                            <li><strong>HTTP natal context for LLMs</strong>: <code class="text-primary">POST /api/v1/natal/llm-context</code> returns compact XML (JSON wrapper or raw <code>application/xml</code>)—no MCP required for server-side prompt assembly.</li>
+                            <li><strong>Fastify Framework</strong>: Built on the world's fastest Node.js framework for sub-10ms response times.</li>
+                            <li><strong>Redis Caching</strong>: Cluster-ready caching for astronomical calculations that never repeat.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Data & Compliance</h4>
+                        <ul>
+                            <li><strong>Geo search &amp; timezone</strong>: <code class="text-primary">GET|POST /api/v1/geo/search</code>, <code class="text-primary">POST /api/v1/geo/timezone</code> — large offline city list with coordinates.</li>
+                            <li><strong>White-Label PDF Reports</strong>: Full engine to generate beautiful, customizable PDF reports for end-users.</li>
+                            <li><strong>Zod Safety</strong>: 100% type-safe request/response validation with automatic OpenAPI documentation.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Global Reach</h4>
+                        <ul>
+                            <li><strong>Multi-Language Engine</strong>: Deep localization support for English, Portuguese, Spanish, and Hindi across all calculation outputs.</li>
+                            <li><strong>HMAC & API Security</strong>: Enterprise-grade authentication and rate-limiting to protect your keys and bandwidth.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer Experience -->
+            <div id="dev" class="feature-category-full reveal-up">
+                <div class="category-header">
+                    <div class="icon-wrap">⚙️</div>
+                    <h2>Developer Experience (SDK/MCP)</h2>
+                    <span class="badge-tech">OpenAPI v3.1 / MCP Native</span>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Model Context Protocol</h4>
+                        <ul>
+                            <li><strong>Universal Discovery</strong>: Standard endpoint for tool discovery by any LLM agent or custom GPT.</li>
+                            <li><strong>Agent Connectivity</strong>: Plug directly into Claude Desktop, Cursor, and Zed using the <code class="text-primary">/api/mcp/list_tools</code> endpoint.</li>
+                            <li><strong>OpenAI Actions Ready</strong>: Feed <code class="text-primary">/api/v1/openapi.json</code> into ChatGPT or other action runners.</li>
+                            <li><strong>MCP vs HTTP context</strong>: MCP <code class="text-primary">call_tool</code> suits agent loops; <code class="text-primary">POST /api/v1/natal/llm-context</code> suits backends that want a single XML blob for system prompts.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>SDK Generation</h4>
+                        <ul>
+                            <li><strong>Full Definition</strong>: Every endpoint is typed and validated with Zod/OpenAPI.</li>
+                            <li><strong>Client Generation</strong>: 100% compatible with <code>openapi-generator-cli</code> for TS, Python, Go, and more.</li>
+                            <li><strong>Live Docs</strong>: Interactive Swagger UI at <a href="/docs" class="api-link text-primary" target="_blank" rel="noopener">/docs</a>.</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h4>Integration Assets</h4>
+                        <ul>
+                            <li><strong>OpenAPI JSON</strong>: <a href="/api/v1/openapi.json" class="api-link text-primary" target="_blank" rel="noopener">/api/v1/openapi.json</a></li>
+                            <li><strong>MCP Discovery</strong>: <a href="/api/mcp/list_tools" class="api-link text-primary" target="_blank" rel="noopener">/api/mcp/list_tools</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <a href="/" class="logo">ASTRYXION API</a>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/features">Features</a>
+                <a href="/docs" class="api-link" target="_blank">Docs</a>
+                <a href="/dashboard" class="api-link" target="_blank">Playground</a>
+                <a href="/status" class="api-link" target="_blank">Status</a>
+            </div>
+            <div class="copyright">&copy; 2026 ASTRYXION API. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

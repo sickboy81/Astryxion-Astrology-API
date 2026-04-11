@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "astro-api-vibecode-2026",
+    "name": "Astro Commercial API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Astrology (Western)",
+      "item": [
+        {
+          "name": "Natal Chart",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"1990-05-15\",\n  \"timeUtc\": \"13:00:00\",\n  \"latitude\": -23.5505,\n  \"longitude\": -46.6333\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/v1/natal-chart" }
+          }
+        },
+        {
+          "name": "Daily Horoscope",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sign\": \"aries\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/v1/horoscope" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Astrology (Vedic)",
+      "item": [
+        {
+          "name": "Vedic Complete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"1990-05-15\",\n  \"timeUtc\": \"13:00:00\",\n  \"latitude\": -23.5505,\n  \"longitude\": -46.6333\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/v1/vedic-complete" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Oracles",
+      "item": [
+        {
+          "name": "Tarot Draw",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spread\": \"past_present_future\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/v1/tarot/draw" }
+          }
+        },
+        {
+          "name": "Runes Draw",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spread\": \"three_norns\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/v1/runes/draw" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Natal PDF Report",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"John Doe\",\n  \"date\": \"1990-05-15\",\n  \"timeUtc\": \"13:00:00\",\n  \"latitude\": -23.5505,\n  \"longitude\": -46.6333\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/v1/reports/natal-pdf" }
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "dev_test_key", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" }
+  ]
+}
