@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://astryxion.com/sitemap.xml
+
+# Crawl rate
+Crawl-delay: 1
+
+# Block specific patterns (if needed in future)
+# Disallow: /api/
+# Disallow: /internal/
+
+# Allow specific bots full access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block development/staging (uncomment if needed)
+# User-agent: *
+# Disallow: /staging/
+# Disallow: /test/
