@@ -1,0 +1,55 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Aplicar: Dashboard → New → Blueprint → ligar este repositório.
+#
+# Antes do primeiro deploy, define REDIS_URL (ex.: Redis Key Value na Render ou Upstash).
+# Os segredos abaixo são gerados automaticamente na criação; podes alterá-los no dashboard.
+
+version: "1"
+
+services:
+  - type: web
+    name: astryxion-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Obrigatório em produção (validado em src/lib/env-validation.ts)
+      - key: REDIS_URL
+        sync: false
+      - key: API_KEY_HASH_SECRET
+        generateValue: true
+      - key: INTERNAL_SECRET
+        generateValue: true
+      # Imagem Docker já define SWEPH_EPHE_PATH; reforço explícito na Render
+      - key: SWEPH_EPHE_PATH
+        value: /app/ephe
+      - key: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
+        value: "true"
+      - key: PUPPETEER_EXECUTABLE_PATH
+        value: /usr/bin/chromium
+      # Opcional: chave só para experimentar o Swagger sem portal
+      - key: SWAGGER_SANDBOX_API_KEY
+        sync: false
+      # Opcional: POST /api/v1/internal/horoscope-refresh
+      - key: INTERNAL_CRON_TOKEN
+        sync: false
+      # Protege GET /metrics (Bearer ou X-Metrics-Token). Copia o valor no Grafana/scraper Prometheus.
+      - key: METRICS_BEARER_TOKEN
+        generateValue: true
+
+  # Descomenta para criar Redis na Render (plano pago na maioria das contas).
+  # Nesse caso, substitui REDIS_URL acima por:
+  #   - key: REDIS_URL
+  #     fromService:
+  #       name: astryxion-redis
+  #       type: keyvalue
+  #       property: connectionString
+  #
+  # - type: keyvalue
+  #   name: astryxion-redis
+  #   region: oregon
+  #   plan: starter
+  #   maxmemoryPolicy: noeviction
